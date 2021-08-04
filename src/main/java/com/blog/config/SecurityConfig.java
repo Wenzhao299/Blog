@@ -53,7 +53,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .successHandler(myAuthenticationSuccessHandler)
                 .failureHandler(myAuthenticationFailureHandler)
             .and().authorizeRequests()
-                .antMatchers("login.html","/login","/captcha").permitAll()
+                .antMatchers("login.html","/login","/captcha","register.html","/register").permitAll()
                 .anyRequest().access("@RBAC.hasPermission(request,authentication)")
 //                .antMatchers("/main","/write","/about").hasAnyAuthority("ROLE_user","ROLE_admin")
 //                .antMatchers("/admin").hasAuthority("/admin")
@@ -89,7 +89,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) {
         //将项目中静态资源路径开放出来
-        web.ignoring().antMatchers( "/css/**", "/fonts/**", "/img/**", "/js/**");
+        web.ignoring().antMatchers("/css/**","/icons/**","/js/**","/vendor/**","/fonts/**","/images/**","/upload/**","/fonts/**","/editormd/**");
     }
 
     @Bean

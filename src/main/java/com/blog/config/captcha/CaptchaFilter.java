@@ -46,24 +46,24 @@ public class CaptchaFilter extends OncePerRequestFilter {
         HttpSession session = request.getRequest().getSession();
         String codeInRequest = request.getParameter("captchaText");
         if(StringUtils.isEmpty(codeInRequest)){
-            throw new SessionAuthenticationException("验证码不能为空");
+            throw new SessionAuthenticationException("验证码不能为空!");
         }
 
         //获取session池中的验证码谜底
         CaptchaConfig codeInSession = (CaptchaConfig) session.getAttribute("captchaCode");
         if(Objects.isNull(codeInSession)) {
-            throw new SessionAuthenticationException("验证码不存在");
+            throw new SessionAuthenticationException("验证码不存在!");
         }
 
         //校验服务器session池中的验证码是否过期
         if(codeInSession.isExpired()) {
             session.removeAttribute("captchaCode");
-            throw new SessionAuthenticationException("验证码已经过期");
+            throw new SessionAuthenticationException("验证码已经过期!");
         }
 
         //请求验证码校验
         if(!StringUtils.equals(codeInSession.getCode(), codeInRequest)) {
-            throw new SessionAuthenticationException("验证码不匹配");
+            throw new SessionAuthenticationException("验证码不匹配!");
         }
     }
 }

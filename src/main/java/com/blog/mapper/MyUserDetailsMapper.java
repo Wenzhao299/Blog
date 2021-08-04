@@ -1,6 +1,8 @@
 package com.blog.mapper;
 
+import com.blog.model.MyUser;
 import com.blog.model.MyUserDetails;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
@@ -20,7 +22,10 @@ public interface MyUserDetailsMapper {
     String findRoleByUsername(@Param("username") String username);
 
     //根据用户角色查询权限
-//    @Select("select url form view_role_menu where role_code=#{role_code}")
     @Select("select url from view_role_menu where role_code=#{role_code}")
     List<String> findAuthorityByRoleCodes(@Param("role_code") String role_code);
+
+    //用户注册
+    @Insert("insert into sys_user(username,password,enabled) values(#{username},#{password},#{enabled})")
+    void register(MyUser myUser);
 }

@@ -16,6 +16,9 @@ public class MyRbacService {
 
     public boolean hasPermission(HttpServletRequest request, Authentication authentication) {
         Object principal = authentication.getPrincipal();
+        if (request.getRequestURI().contains("register")) {
+            return true;
+        }
         if (principal instanceof UserDetails) {
             UserDetails userDetails = ((UserDetails) principal);
             //simpleGrantedAuthority：本次申请访问的资源

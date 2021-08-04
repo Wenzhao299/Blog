@@ -1,22 +1,33 @@
 package com.blog.controller;
 
+import com.blog.model.Blog;
+import com.blog.model.MyUserDetails;
+import com.blog.service.BlogService;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
+import java.util.List;
 
 
 @Controller
 public class PageController {
 
-//    // 登录
-//    @PostMapping("/login")
-//    public String index(String username,String password) {
-//        return "index";
-//    }
+    @Resource
+    BlogService blogService;
 
     // 首页
-    @GetMapping("/main")
-    public String index() {
-        return "main";
+    @GetMapping("/home")
+    public String index(HttpSession session, Model model) {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username = ((MyUserDetails) principal).getUsername();
+        List<Blog> blogs = blogService.findByUsername(username);
+        session.setAttribute("username",username);
+        model.addAttribute("blogs",blogs);
+        return "home";
     }
 
     // 新建博客
@@ -36,6 +47,5 @@ public class PageController {
     public String updateOrder() {
         return "about";
     }
-
 
 }

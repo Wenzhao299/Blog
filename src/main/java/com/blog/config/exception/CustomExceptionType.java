@@ -11,7 +11,6 @@ public enum CustomExceptionType {
     }
 
     private String typeDesc;//异常类型中文描述
-
     private int code; //code
 
     public String getTypeDesc() {
