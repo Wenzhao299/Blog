@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <link rel="shortcut icon" href="upload/TG-Thumb.png" />
+
+    <title>Blog Detail</title>
+
+    <link rel="stylesheet" href="css/reset.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="css/wordpress.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="css/animation.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="css/custom.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="js/plugins/flexslider/flexslider.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="css/tooltipster.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="css/style-main.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="css/grid.css" type="text/css" media="all" />
+
+</head>
+<body data-rsssl="1" class="home blog">
+    <input type="hidden" id="pp_enable_right_click" name="pp_enable_right_click" value="" />
+    <input type="hidden" id="pp_enable_dragging" name="pp_enable_dragging" value="" />
+    <input type="hidden" id="pp_image_path" name="pp_image_path" value="images/" />
+    <input type="hidden" id="pp_homepage_url" name="pp_homepage_url" value="index.html" />
+    <input type="hidden" id="pp_ajax_search" name="pp_ajax_search" value="1" />
+    <input type="hidden" id="pp_fixed_menu" name="pp_fixed_menu" value="1" />
+    <input type="hidden" id="pp_topbar" name="pp_topbar" value="" />
+    <input type="hidden" id="pp_page_title_img_blur" name="pp_page_title_img_blur" value="1" />
+    <input type="hidden" id="tg_blog_slider_layout" name="tg_blog_slider_layout" value="slider" />
+    <input type="hidden" id="pp_back" name="pp_back" value="Back" />
+    <input type="hidden" id="pp_footer_style" name="pp_footer_style" value="0" />
+
+    <!-- Begin mobile menu -->
+    <a id="close_mobile_menu" href="javascript:;"></a>
+    <div class="mobile_menu_wrapper">
+        <form role="search" method="get" name="searchform" id="searchform" action="index.html">
+            <div>
+                <input type="text" value="" name="s" id="s" autocomplete="off" placeholder="Search..." />
+                <button>
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
+            <div id="autocomplete"></div>
+        </form>
+        <!-- Begin side menu sidebar -->
+        <div class="page_content_wrapper">
+            <div class="sidebar_wrapper">
+                <div class="sidebar">
+                    <div class="content">
+                        <ul class="sidebar_widget">
+                            <li id="text-2" class="widget widget_text">
+                                <h2 class="widgettitle" th:text="${session.username}"></h2>
+                                <h2 class="widgettitle"><a href="/logout" >退出登录</a></h2>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End side menu sidebar -->
+        <div class="menu-side-mobile-menu-container">
+            <ul id="mobile_main_menu" class="mobile_main_nav" style="text-align: center">
+                <li class="menu-item" ><a href="/home">Home</a></li>
+                <li class="menu-item"><a href="/write">Write</a></li>
+                <li class="menu-item"><a href="/admin">Admin</a></li>
+                <li class="menu-item"><a href="/about">About</a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- End mobile menu -->
+
+    <!-- Begin template wrapper -->
+    <div id="wrapper">
+        <div class="header_style_wrapper">
+            <!-- End top bar -->
+
+            <div class="top_bar">
+                <div id="menu_wrapper">
+                    <div class="social_wrapper">
+                        <ul>
+                            <li class="facebook">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                            </li>
+                            <li class="twitter">
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                            </li>
+                            <li class="pinterest">
+                                <a title="Pinterest" href="#"><i class="fa fa-pinterest"></i></a>
+                            </li>
+                            <li class="instagram">
+                                <a title="Instagram" href="#"><i class="fa fa-instagram"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div id="nav_wrapper">
+                        <div class="nav_wrapper_inner">
+                            <div id="menu_border_wrapper">
+                                <div class="menu-main-menu-container">
+                                    <ul id="main_menu" class="nav">
+                                        <li class="menu-item"><a href="/home">Home</a></li>
+                                        <li class="menu-item"><a href="/write">Write</a></li>
+                                        <li class="menu-item"><a href="/admin">admin</a></li>
+                                        <li class="menu-item"><a href="/about">About</a></li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End main nav -->
+
+                    <!-- Begin right corner buttons -->
+                    <div id="logo_right_button">
+                        <!-- Begin search icon -->
+                        <a href="javascript:;" id="search_icon"><i class="fa fa-search"></i></a>
+                        <!-- End side menu -->
+
+                        <!-- Begin search icon -->
+                        <a href="javascript:;" id="mobile_nav_icon"></a>
+                        <!-- End side menu -->
+                    </div>
+                    <!-- End right corner buttons -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Begin logo -->
+        <div id="logo_wrapper">
+            <div id="logo_normal" class="logo_container">
+                <div class="logo_align">
+                    <a id="custom_logo" class="logo_wrapper default">
+                        <img src="images/logo@2x.png" alt="" width="252" height="108" />
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- End logo -->
+
+        <div id="page_caption" class="hasbg parallax">
+            <div id="bg_regular" th:style="'background:url('+${blog.imgUrl}+') no-repeat center center; background-size: auto 120%;'">></div>
+        </div>
+
+        <div class="page_title_wrapper">
+            <div class="page_title_inner">
+                <h1 th:text="${blog.title}"></h1>
+                <hr class="title_break" />
+            </div>
+        </div>
+
+        <!-- Begin content -->
+        <div id="page_content_wrapper" class="hasbg">
+            <div class="inner">
+                <!-- Begin main content -->
+                <div class="inner_wrapper">
+                        <pre style="font-size: medium; white-space: pre-wrap; word-wrap: break-word;" th:text="${blog.content}"></pre><br>
+                        <p></p>
+                        </div>
+                </div>
+                <!-- End main content -->
+            </div>
+        </div>
+    </div>
+
+    <div style="text-align: center">© Copyright Blog Template - Template By <a href="https://getbootstrap.com/">BootStrap</a></div>
+    <div id="overlay_background"></div>
+
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/plugins/jquery.magnific-popup.js"></script>
+<script type="text/javascript" src="js/plugins/jquery.easing.js"></script>
+<script type="text/javascript" src="js/plugins/waypoints.min.js"></script>
+<script type="text/javascript" src="js/plugins/jquery.isotope.js"></script>
+<script type="text/javascript" src="js/plugins/jquery.tooltipster.min.js"></script>
+<script type="text/javascript" src="js/plugins/custom_plugins.js"></script>
+<script type="text/javascript" src="js/plugins/custom.js"></script>
+<script type="text/javascript" src="js/plugins/flexslider/jquery.flexslider-min.js"></script>
+<script type="text/javascript" src="js/plugins/script-slider-flexslider.js"></script>
+<script type="text/javascript" src="js/plugins/modernizr.js"></script>
+<script type="text/javascript" src="js/plugins/jquery.gridrotator.js"></script>
+<script type="text/javascript" src="js/plugins/script-gridrotator.js"></script>
+</body>
+
+<script th:inline="javascript">
+    var message = [[${msg}]];
+    if (message != null) {
+        window.onload = function () {
+            alert(message);
+        }
+    }
+</script>
+
+</html>
