@@ -154,12 +154,14 @@
             <div class="inner">
                 <!-- Begin main content -->
                 <div class="inner_wrapper">
-                        <pre style="font-size: medium; white-space: pre-wrap; word-wrap: break-word;" th:text="${blog.content}"></pre><br>
-                        <p></p>
-                        </div>
+                    <pre style="font-size: medium; white-space: pre-wrap; word-wrap: break-word;" th:text="${blog.content}"></pre>
                 </div>
-                <!-- End main content -->
             </div>
+            <p style="text-align: center">
+                <a th:href="@{/modifyById(id=${blog.id})}"><button name="edit" class="submit-button">Modify</button></a>
+                <a th:href="@{/delete(id=${blog.id})}"><button name="delete" class="submit-button">Delete</button></a>
+            </p><br>
+            <!-- End main content -->
         </div>
     </div>
 

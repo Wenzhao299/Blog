@@ -2,8 +2,6 @@ package com.blog.service;
 
 import com.blog.mapper.BlogMapper;
 import com.blog.model.Blog;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -32,5 +30,17 @@ public class BlogService {
 
     public Blog findByBlogId(int id) {
         return blogMapper.findByBlogId(id);
+    }
+
+    public void delete(int id) {
+        blogMapper.delete(id);
+    }
+
+    public void modifyIncludeUrl(Blog blog) {
+        blogMapper.modifyIncludeUrl(blog);
+    }
+
+    public void modifyExcludeUrl(Blog blog) {
+        blogMapper.modifyExcludeUrl(blog);
     }
 }

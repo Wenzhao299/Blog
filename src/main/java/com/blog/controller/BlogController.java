@@ -1,8 +1,6 @@
 package com.blog.controller;
 
 import com.blog.model.Blog;
-import com.blog.model.MyUser;
-import com.blog.model.MyUserDetails;
 import com.blog.service.BlogService;
 import com.blog.utils.OSSClientUtil;
 import org.apache.commons.io.FileUtils;
@@ -16,9 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.util.List;
 
 /**
@@ -31,7 +27,7 @@ public class BlogController {
     BlogService blogService;
 
     @PostMapping("/write")
-    public String write(Blog blog, @RequestParam(value="image",required=false)MultipartFile multipartFile, Model model, HttpSession session) {
+    public String write(Blog blog, @RequestParam(value="image",required=false)MultipartFile multipartFile, HttpSession session) {
         OSSClientUtil ossClientUtil = new OSSClientUtil();
         String username = (String) session.getAttribute("username");
         String imgUrl = "";
@@ -55,14 +51,14 @@ public class BlogController {
         if (f.delete()){
             System.out.println("缓存文件删除成功！");
         }else {
-            System.out.println("缓存文件删除失败!");
+            System.out.println("缓存文件删除失败！");
         }
 
         return "redirect:/home";
     }
 
     @GetMapping("/blog")
-    public String findByBlogId(int id, HttpSession session, Model model){
+    public String findByBlogId(int id, HttpSession session, Model model) {
         List<Integer> list = blogService.findBlogIdByUsername((String) session.getAttribute("username"));
         Blog blog = blogService.findByBlogId(id);
         if (list.contains(id)) {
@@ -72,6 +68,55 @@ public class BlogController {
             model.addAttribute("msg","页面走丢了！");
             return "redirect:/home";
         }
+    }
+
+    @GetMapping("/delete")
+    public String delete(int id) {
+        blogService.delete(id);
+        return "redirect:/home";
+    }
+
+    @GetMapping("/modifyById")
+    public String modifyById(int id, Model model) {
+        Blog blog = blogService.findByBlogId(id);
+        model.addAttribute("blog",blog);
+        return "/modify";
+    }
+
+    @PostMapping("/modify")
+    public String modify(Blog blog, @RequestParam(value="image",required=false)MultipartFile multipartFile, HttpSession session) {
+        String username = (String) session.getAttribute("username");
+        if(multipartFile.getSize() != 0) {
+            OSSClientUtil ossClientUtil = new OSSClientUtil();
+            String imgUrl = "";
+            String fileName = multipartFile.getOriginalFilename();
+            File file = new File(fileName);
+            try {
+                FileUtils.copyInputStreamToFile(multipartFile.getInputStream(), file);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try {
+                imgUrl = ossClientUtil.fileUpload(file,username);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            blog.setImgUrl(imgUrl);
+            blogService.modifyIncludeUrl(blog);
+
+            File f = new File(file.toURI());
+            if (f.delete()){
+                System.out.println("缓存文件删除成功！");
+            }else {
+                System.out.println("缓存文件删除失败！");
+            }
+        }
+        else if(multipartFile.getSize() == 0) {
+            System.out.println(blog);
+            blogService.modifyExcludeUrl(blog);
+        }
+
+        return "redirect:/home";
     }
 
 }

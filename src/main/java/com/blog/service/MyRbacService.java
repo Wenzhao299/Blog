@@ -16,7 +16,8 @@ public class MyRbacService {
 
     public boolean hasPermission(HttpServletRequest request, Authentication authentication) {
         Object principal = authentication.getPrincipal();
-        if (request.getRequestURI().contains("register")) {
+        String uri = request.getRequestURI();
+        if (uri.contains("register") /*|| uri.contains("modify") || uri.contains("delete")*/) {
             return true;
         }
         if (principal instanceof UserDetails) {

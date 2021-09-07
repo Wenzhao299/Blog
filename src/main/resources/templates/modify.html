@@ -1,11 +1,11 @@
-﻿<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
     <link rel="shortcut icon" href="upload/TG-Thumb.png" />
 
-    <title>Blog Home</title>
+    <title>Blog Modify</title>
 
     <link rel="stylesheet" href="css/reset.css" type="text/css" media="all" />
     <link rel="stylesheet" href="css/wordpress.css" type="text/css" media="all" />
@@ -17,15 +17,9 @@
     <link rel="stylesheet" href="css/style-main.css" type="text/css" media="all" />
     <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css" media="all" />
     <link rel="stylesheet" href="css/grid.css" type="text/css" media="all" />
-    <style>
-        .table{width:100%; text-align: center; table-layout: fixed;}
-        .th{text-align: center; vertical-align: middle; }
-        .td{text-align: center; vertical-align: middle; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
-    </style>
 
 </head>
-
-<body data-rsssl="1" class="home blog">
+    <body data-rsssl="1" class="home blog">
     <input type="hidden" id="pp_enable_right_click" name="pp_enable_right_click" value="" />
     <input type="hidden" id="pp_enable_dragging" name="pp_enable_dragging" value="" />
     <input type="hidden" id="pp_image_path" name="pp_image_path" value="images/" />
@@ -41,7 +35,7 @@
     <!-- Begin mobile menu -->
     <a id="close_mobile_menu" href="javascript:;"></a>
     <div class="mobile_menu_wrapper">
-        <form role="search" method="get" name="searchform" id="searchform" action="index.html">
+        <form role="search" method="get" name="searchform" id="searchform" action="">
             <div>
                 <input type="text" value="" name="s" id="s" autocomplete="off" placeholder="Search..." />
                 <button>
@@ -78,7 +72,7 @@
     <!-- End mobile menu -->
 
     <!-- Begin template wrapper -->
-    <div id="wrapper" style="text-align: center">
+    <div id="wrapper">
         <div class="header_style_wrapper">
             <!-- End top bar -->
 
@@ -141,44 +135,38 @@
                     </a>
                 </div>
             </div>
-        <!-- End logo -->
         </div>
+        <!-- End logo -->
         <div id="page_caption" class="hasbg parallax">
-            <div id="bg_regular" style="background-image: url(upload/22.jpg); no-repeat: center center; background-size: auto 150%;"></div>
+            <div id="bg_regular" style="background-image: url(upload/15.jpg); no-repeat: center center; background-size: auto 150%;"></div>
         </div>
 
         <div class="page_title_wrapper">
             <div class="page_title_inner">
-                <h1>Blog List</h1>
+                <h1>Write A New Blog</h1>
                 <hr class="title_break" />
             </div>
         </div>
 
-        <div id="page_content_wrapper" style="text-align: center">
+        <!-- Begin content -->
+        <div id="page_content_wrapper" class="hasbg">
             <div class="inner">
                 <!-- Begin main content -->
                 <div class="inner_wrapper">
-<!--                    <div class="sidebar_content two_cols mixed">-->
-                        <table class="table">
-                            <tr>
-                                <th class="th">image</th>
-                                <th class="th">title</th>
-                                <th class="th">description</th>
-                                <th class="th">time</th>
-                            </tr>
-                            <tr th:class="${blogStatus.odd}?'row1':'row2'" th:each="blog,blogStatus:${blogs}">
-                                <td class="td"><img th:src="${blog.imgUrl}" style="width: 250px; height: 150px;"/></td>
-                                <td class="td" style="font-size: medium; font-weight:bold;"><a th:text="${blog.title}" th:href="@{/blog(id=${blog.id})}"></a></td>
-                                <td class="td"><span th:text="${blog.content}"></span></td>
-                                <td class="td"><span th:text="${#dates.format(blog.time,'yyyy-MM-dd HH:mm')}"></span></td>
-                            </tr>
-                        </table>
-
-                        <div class="pagination">
-                            <div class="pagination_page">1</div>
-                            <a href="/main" class="prev_button">Older Posts<i class="fa fa-angle-double-right"></i></a>
-                        </div>
-<!--                    </div>-->
+                    <form method="post" action="/modify" class="forms-input" enctype="multipart/form-data">
+                        <input type="hidden" name="id" id="id" th:value="${blog.id}">
+                        <label for="title">Title:</label>
+                        <input type="text" name="title" class="input1" id="title" th:value="${blog.title}"/>
+                        <br><br>
+                        <label for="image">Image:</label>
+                        <input type="file" name="image" class="input1" id="image">
+                        <br><br>
+                        <label for="content">Content:</label>
+                        <textarea name="content" rows="100" cols="20" class="input1" id="content" th:text="${blog.content}"></textarea>
+                        <br><br>
+                        <input type="submit" name="submit" value="Submit" class="submit-button"/>
+                        <br><br>
+                    </form>
 
                 </div>
                 <!-- End main content -->
@@ -202,7 +190,6 @@
     <script type="text/javascript" src="js/plugins/modernizr.js"></script>
     <script type="text/javascript" src="js/plugins/jquery.gridrotator.js"></script>
     <script type="text/javascript" src="js/plugins/script-gridrotator.js"></script>
-
 </body>
 
 <script th:inline="javascript">
@@ -215,4 +202,3 @@
 </script>
 
 </html>
-

@@ -1,4 +1,4 @@
-//package com.blog.config.exception;
+package com.blog.config.exception;//package com.blog.config.exception;
 //
 //import org.springframework.validation.BindException;
 //import org.springframework.validation.FieldError;

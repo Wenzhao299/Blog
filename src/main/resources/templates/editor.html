@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Editor</title>
+    <link rel="stylesheet" type="text/css" href="/editormd/editormd.min.css" />
+    <script src="/editormd/editormd.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+    <!-- 构造form表单，以便提交数据-->
+    <form id="formBlog" action="/write" method="post">
+        <input id="blog_title" name="title" value="" style="display: none;"></input>
+        <textarea id="blog_md" name="md" value="" style="display: none;"></textarea>
+        <textarea id="blog_html" name="html" value="" style="display: none;"></textarea>
+    </form>
+    <div class="row">
+        <div class="panel panel-primary">
+            <div class="page-header">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2 col-sm-3">
+                            <input type="text" class="form-control" id="art-head" name="art-head" placeholder="标题">
+                        </div>
+                        <div class="col-md-2 col-sm-1">
+                            <button class="btn btn-success btn-blog-save">发布内容</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <!-- md文件编辑器编辑区域 后续js中会使用到 -->
+                    <div id="blog_mdedit"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+    <script type="text/javascript">
+        $(function() {
+            navAddClass('read_write');
+            md_edit = editormd("blog_mdedit", { //注意1：这里的就是上面的DIV的id属性值
+                placeholder : "欢迎使用",
+                width : "90%",
+                height : 400,
+                syncScrolling : "single",
+                emoji : true,
+                path : "/editormd/lib/", //注意2：你的路径
+                saveHTMLToTextarea : true,
+                tocm : true, // Using [TOCM]
+                tex : true, // 开启科学公式TeX语言支持，默认关闭
+                flowChart : true, // 开启流程图支持，默认关闭
+                /* 上传图片配置 */
+                imageUpload : true,
+                imageFormats : [ "jpg", "jpeg", "gif", "png", "bmp", "webp" ],
+                imageUploadURL : "/upFile", //注意你后端的上传图片服务地址
+            });
+        });
+    </script>
+</html>
