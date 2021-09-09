@@ -157,13 +157,13 @@
                         <label for="title">Title:</label>
                         <input type="text" name="title" class="input1" id="title"/>
                         <br><br>
-                        <label for="image">Image:</label>
+                        <label for="image">Image(only jpg/png/bmp):</label>
                         <input type="file" name="image" class="input1" id="image">
                         <br><br>
                         <label for="content">Content:</label>
                         <textarea name="content" rows="100" cols="20" class="input1" id="content"></textarea>
                         <br><br>
-                        <input type="submit" name="submit" value="Submit" class="submit-button"/>
+                        <input type="submit" name="submit" value="Submit" class="submit-button" onclick="return check()"/>
                         <br><br>
                     </form>
 
@@ -197,6 +197,16 @@
         window.onload = function () {
             alert(message);
         }
+    }
+</script>
+<script type="text/javascript">
+    function check() {
+        var image=document.getElementById("image").value;
+        if(image === "" || image == null) {
+            window.alert("请选择图片！");
+            return false;
+        }
+        return true;
     }
 </script>
 
