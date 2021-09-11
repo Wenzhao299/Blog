@@ -89,7 +89,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) {
         //将项目中静态资源路径开放出来
-        web.ignoring().antMatchers("/css/**","/icons/**","/js/**","/vendor/**","/fonts/**","/images/**","/upload/**","/fonts/**","/editormd/**");
+        web.ignoring().antMatchers("/css/**","/icons/**","/js/**","/fonts/**","/images/**");
     }
 
     @Bean

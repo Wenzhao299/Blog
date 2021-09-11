@@ -43,6 +43,9 @@ public class FileTypeUtil {
         if(value.startsWith("424D")) {
             return "bmp";
         }
+        if(mFileTypes.get(value)==null) {
+            return "other";
+        }
         return mFileTypes.get(value);
     }
 

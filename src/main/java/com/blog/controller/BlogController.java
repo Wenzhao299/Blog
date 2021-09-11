@@ -38,7 +38,7 @@ public class BlogController {
         String fileName = multipartFile.getOriginalFilename();
         File file = new File(fileName);
         FileInputStream is;
-        String type = null;
+        String type = "other";
         try {
             FileUtils.copyInputStreamToFile(multipartFile.getInputStream(), file);
             is = new FileInputStream(file);
@@ -49,7 +49,8 @@ public class BlogController {
         }
         if(!type.equals("jpg") && !type.equals("png") && !type.equals("bmp")) {
             model.addAttribute("msg","只能上传jpg/png/bmp格式的文件！");
-            return "/write";
+            model.addAttribute("blog",blog);
+            return "write";
         }else {
             try {
                 FileUtils.copyInputStreamToFile(multipartFile.getInputStream(), file);
@@ -82,7 +83,7 @@ public class BlogController {
         Blog blog = blogService.findByBlogId(id);
         if (list.contains(id)) {
             model.addAttribute("blog",blog);
-            return "/blog";
+            return "blog";
         }else {
             model.addAttribute("msg","页面走丢了！");
             return "redirect:/home";
@@ -99,7 +100,7 @@ public class BlogController {
     public String modifyById(int id, Model model) {
         Blog blog = blogService.findByBlogId(id);
         model.addAttribute("blog",blog);
-        return "/modify";
+        return "modify";
     }
 
     @PostMapping("/modify")
